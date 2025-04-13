@@ -1,0 +1,26 @@
+ 
+ /***** CSS Style Page WebApp *****/ 
+
+ @import url(index.css);
+ 
+ :root{
+   --font-poppins: "Poppins", sans-serif;
+   --font-roboto:  "Gabarito", sans-serif;
+   --font-lexend: "Lexend", sans-serif;
+   --font-montserrat: "Montserrat", sans-serif;
+   --spotify-green:   #1DB954;
+   --spotify-black:   #191414;
+   --spotify-dark:    #121212;
+   --spotify-gray:    #B3B3B3;
+   --spotify-white:   #ffffff;
+ }
+ 
+ body{
+   background-color: var(--spotify-black);
+   color: var(--spotify-white);
+   font-family: var(--font-poppins);
+   text-transform: capitalize;
+ }
+ 
+ /***** End CSS Style Page WebApp *****/
+ 
