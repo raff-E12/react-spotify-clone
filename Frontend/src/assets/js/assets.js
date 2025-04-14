@@ -92,7 +92,10 @@ export const assets = {
        }   
     },
 
-    player: [shuffle_icon, prev_icon, play_icon, next_icon, loop_icon]
+    player: [{icon: shuffle_icon}, {icon: prev_icon}, {icon: play_icon}, {icon: next_icon}, {icon: loop_icon}],
+
+    icons_setting_1: [{icon: plays_icon}, {icon: mic_icon}, {icon: queue_icon}, {icon: speaker_icon}, {icon: volume_icon}],
+    icons_setting_2: [{icon: mini_player_icon}, {icon:zoom_icon}]
 }
 
 export const albumsData = [

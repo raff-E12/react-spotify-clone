@@ -1,14 +1,16 @@
 import React from 'react'
 import SideBar from '../components/SideBar'
 import Player from '../components/Player'
+import DisplayHome from '../layout/DisplayHome'
 
-export default function IndexPage() {
+export default function IndexHome() {
   return (
     <div className='main-page'>
         <div className='page-compos'>
             <SideBar />
-            <Player />
+            <DisplayHome />
         </div>
+        <Player />
     </div>
   )
 }

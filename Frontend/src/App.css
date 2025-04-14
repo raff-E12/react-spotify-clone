@@ -22,6 +22,7 @@
       color: var(--spotify-white);
       font-family: var(--font-poppins);
       text-transform: capitalize;
+      width: 100%;
     }
   
     .sidebar-sc{
@@ -58,6 +59,24 @@
     .slide{
       background-color: var(--spotify-green);
     }
+
+    .volume-slider{
+      background-color: var(--spotify-white)
+    }
+
+    .display-home{
+      background-color: var(--spotify-black)
+    }
+
+    .arrows-icons{
+      background-color: var(--spotify-dark)
+    }
+
+    .btn-nav{
+      background-color: var(--spotify-white);
+      color: var(--spotify-dark);
+      font-family: var(--font-montserrat)
+    }
    
   }
  /***** End CSS Style Page WebApp *****/
@@ -66,7 +85,7 @@
 
   @layer components{
     .main-page{
-      @apply h-screen w-full;
+      @apply h-screen w-[100%];
     }
     
     .title-song-pl{
@@ -74,7 +93,7 @@
     }
 
     .page-compos{
-      @apply h-screen flex flex-col;
+      @apply h-screen flex flex-row;
     }
 
     .sidebar-sc{
@@ -171,6 +190,46 @@
 
     .slide{
       @apply h-1 border-none w-0 rounded-full;
+    }
+
+    .icons-setting{
+      @apply hidden lg:flex items-center gap-2 opacity-75 flex-row;
+    }
+
+    .icon-player-left{
+      @apply w-4;
+    }
+
+    .volume-slider{
+      @apply w-20 h-1 rounded;
+    }
+
+    .display-home{
+      @apply w-[100%] m-2 px-6 pt-4 rounded overflow-auto lg:w-[78%] lg:ml-0;
+    }
+
+    .navbar-sc{
+      @apply w-full flex justify-between items-center font-bold;
+    }
+
+    .nav-icons{
+      @apply flex items-center gap-2;
+    }
+
+    .arrows-icons{
+      @apply w-8 p-2 rounded-full cursor-pointer;
+    }
+
+    .left-btn-nav{
+      @apply flex items-center gap-4;
+    }
+
+    .btn-nav{
+      @apply text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer;
+    }
+
+    .user-icons{
+      @apply bg-purple-500 text-black w-7 h-7 rounded-full flex items-center justify-center font-light capitalize;
     }
   }
  

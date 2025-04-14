@@ -26,7 +26,7 @@ export default function Player() {
                 {assets_icons.player.map( icons => {
                     return(
                         <>
-                         <img src={icons} alt="icons"/>
+                         <img src={icons.icon} alt="icons"/>
                         </>
                     )
                 })}
@@ -38,6 +38,25 @@ export default function Player() {
                 </div>
               <p>1:90</p>
            </div>
+        </div>
+        <div className='icons-setting'>
+           {assets_icons.icons_setting_1.map( icons =>{
+             return(
+             <>
+               <img src={icons.icon}  className='icon-player-left' alt='icons'/>
+             </>
+             )
+           })}
+           <div className='volume-slider'>
+              <hr className='slide'/>
+           </div>
+           {assets_icons.icons_setting_2.map( icons => {
+             return(
+               <>
+               <img src={icons.icon} alt="img" className='icon-player-left' />
+               </>
+             )
+           })}
         </div>
     </div>
   )
