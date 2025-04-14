@@ -2,25 +2,178 @@
  /***** CSS Style Page WebApp *****/ 
 
  @import url(index.css);
- 
- :root{
-   --font-poppins: "Poppins", sans-serif;
-   --font-roboto:  "Gabarito", sans-serif;
-   --font-lexend: "Lexend", sans-serif;
-   --font-montserrat: "Montserrat", sans-serif;
-   --spotify-green:   #1DB954;
-   --spotify-black:   #191414;
-   --spotify-dark:    #121212;
-   --spotify-gray:    #B3B3B3;
-   --spotify-white:   #ffffff;
- }
- 
- body{
-   background-color: var(--spotify-black);
-   color: var(--spotify-white);
-   font-family: var(--font-poppins);
-   text-transform: capitalize;
- }
- 
+ @import "tailwindcss";
+
+  @layer base {
+    :root{
+      --font-poppins: "Poppins", sans-serif;
+      --font-roboto:  "Gabarito", sans-serif;
+      --font-lexend: "Lexend", sans-serif;
+      --font-montserrat: "Montserrat", sans-serif;
+      --spotify-green:   #1DB954;
+      --spotify-black:   #191414;
+      --spotify-dark:    #121212;
+      --spotify-gray:    #828282;
+      --spotify-white:   #ffffff;
+    }
+    
+    body{
+      background-color: var(--spotify-dark);
+      color: var(--spotify-white);
+      font-family: var(--font-poppins);
+      text-transform: capitalize;
+    }
+  
+    .sidebar-sc{
+      color: var(--spotify-white);
+    }
+  
+    .sidebar-sc{
+      background-color: var(--spotify-dark);
+    }
+
+    .adv-box{
+      background-color: var(--spotify-gray)
+    }
+
+    .icons-side, .playlist-sc{
+      background-color: var(--spotify-black);
+    }
+
+    .btn-app{
+      color: var(--spotify-black);
+      background-color: var(--spotify-white);
+      font-family: var(--font-lexend);
+    }
+
+    .player-sc{
+      background-color: var(--spotify-black);
+      color: var(--spotify-white);
+    }
+
+    .slide-sc{
+      background-color: var(--spotify-white);
+    }
+
+    .slide{
+      background-color: var(--spotify-green);
+    }
+   
+  }
  /***** End CSS Style Page WebApp *****/
+
+ /***** Tailwind Css Classes *****/ 
+
+  @layer components{
+    .main-page{
+      @apply h-screen w-full;
+    }
+    
+    .title-song-pl{
+      @apply font-semibold;
+    }
+
+    .page-compos{
+      @apply h-screen flex flex-col;
+    }
+
+    .sidebar-sc{
+      @apply w-[23%] h-full p-2 flex-col gap-2 hidden lg:flex;
+    }
+
+    .icons-side{
+      @apply h-[15%] rounded pl-4 flex flex-col justify-around;
+    }
+
+    .options-bar{
+      @apply flex gap-3 items-center cursor-pointer;
+    }
+
+    .options-bar img{
+      @apply w-6;
+    }
+
+    .img-bar p{
+      @apply font-bold;
+    }
+
+    .playlist-sc{
+      @apply h-[85%] rounded;
+    }
+
+    .options-bar-bottom{
+      @apply p-4 flex items-center justify-between w-full gap-4;
+    }
+
+    .icons-part-1{
+      @apply flex items-center gap-3;
+    }
+
+    .icons-part-1 img{
+      @apply w-7;
+    }
+
+    .icons-part-1 p{
+      @apply font-semibold;
+    }
+
+    .icons-part-2{
+      @apply flex items-center gap-3;
+    }
+
+    .icons-part-2 img{
+      @apply w-5;
+    }
+
+    .adv-box{
+      @apply p-4 m-2 rounded font-semibold flex flex-col items-start justify-start gap-1;
+    }
+
+    .adv-box p{
+      @apply font-light;
+    }
+
+    .btn-app{
+      @apply px-4 py-1.5 text-[15px] rounded-full mt-4 font-bold;
+    }
+
+    .player-sc{
+      @apply h-[12%] flex justify-between items-center px-4;
+    }
+
+    .song-icons{
+      @apply hidden lg:flex items-center gap-4;
+    }
+
+    .song-icons img{
+      @apply w-12;
+    }
+
+    .icons-player{
+      @apply flex flex-col items-center gap-1 m-auto;
+    }
+
+    .icons-player-group{
+      @apply flex gap-4;
+    }
+
+    .icons-player-group img{
+      @apply w-4 cursor-pointer;
+    }
+
+    .slide-player{
+      @apply flex items-center gap-5;
+    }
+
+    .slide-sc{
+      @apply w-[60vw] max-w-[500px] rounded-full cursor-pointer;
+    }
+
+    .slide{
+      @apply h-1 border-none w-0 rounded-full;
+    }
+  }
+ 
+ /***** End Tailwind Css Classes *****/
+ 
  

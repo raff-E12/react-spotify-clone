@@ -1,48 +1,48 @@
-import bell_icon from './bell.png'
-import home_icon from './home.png'
-import like_icon from './like.png'
-import loop_icon from './loop.png'
-import mic_icon from './mic.png'
-import next_icon from './next.png'
-import play_icon from './play.png'
-import pause_icon from './pause.png'
-import plays_icon from './plays.png'
-import prev_icon from './prev.png'
-import search_icon from './search.png'
-import shuffle_icon from './shuffle.png'
-import speaker_icon from './speaker.png'
-import stack_icon from './stack.png'
-import zoom_icon from './zoom.png'
-import plus_icon from './plus.png'
-import arrow_icon from './arrow.png'
-import mini_player_icon from './mini-player.png'
-import queue_icon from './queue.png'
-import volume_icon from './volume.png'
-import arrow_right from './right_arrow.png'
-import arrow_left from './left_arrow.png'
-import spotify_logo from './spotify_logo.png'
-import clock_icon from './clock_icon.png'
-import img1 from './img1.jpg'
-import img2 from './img2.jpg'
-import img3 from './img3.jpg'
-import img4 from './img4.jpg'
-import img5 from './img5.jpg'
-import img6 from './img6.jpg'
-import img7 from './img7.jpg'
-import img8 from './img8.jpg'
-import img9 from './img9.jpg'
-import img10 from './img10.jpg'
-import img11 from './img11.jpg'
-import img12 from './img12.jpg'
-import img13 from './img13.jpg'
-import img14 from './img14.jpg'
-import img15 from './img15.jpg'
-import img16 from './img16.jpg'
-import song1 from  './song1.mp3'
-import song2 from  './song2.mp3'
-import song3 from  './song3.mp3'
+import bell_icon from '../../../public/icons/bell.png'
+import home_icon from '../../../public/icons/home.png'
+import like_icon from '../../../public/icons/like.png'
+import loop_icon from '../../../public/icons/loop.png'
+import mic_icon from '../../../public/icons/mic.png'
+import next_icon from '../../../public/icons/next.png'
+import play_icon from '../../../public/icons/play.png'
+import pause_icon from '../../../public/icons/pause.png'
+import plays_icon from '../../../public/icons/plays.png'
+import prev_icon from '../../../public/icons/prev.png'
+import search_icon from '../../../public/icons/search.png'
+import shuffle_icon from '../../../public/icons/shuffle.png'
+import speaker_icon from '../../../public/icons/speaker.png'
+import stack_icon from '../../../public/icons/stack.png'
+import zoom_icon from '../../../public/icons/zoom.png'
+import plus_icon from '../../../public/icons/plus.png'
+import arrow_icon from '../../../public/icons/arrow.png'
+import mini_player_icon from '../../../public/icons/mini-player.png'
+import queue_icon from '../../../public/icons/queue.png'
+import volume_icon from '../../../public/icons/volume.png'
+import arrow_right from '../../../public/icons/right_arrow.png'
+import arrow_left from '../../../public/icons/left_arrow.png'
+import spotify_logo from '../../../public/icons/spotify_logo.png'
+import clock_icon from '../../../public/icons/clock_icon.png'
+import img1 from '../../../public/img/img2.jpg'
+import img2 from '../../../public/img/img2.jpg'
+import img3 from '../../../public/img/img3.jpg'
+import img4 from '../../../public/img/img4.jpg'
+import img5 from '../../../public/img/img5.jpg'
+import img6 from '../../../public/img/img6.jpg'
+import img7 from '../../../public/img/img7.jpg'
+import img8 from '../../../public/img/img8.jpg'
+import img9 from '../../../public/img/img9.jpg'
+import img10 from '../../../public/img/img10.jpg'
+import img11 from '../../../public/img/img11.jpg'
+import img12 from '../../../public/img/img12.jpg'
+import img13 from '../../../public/img/img13.jpg'
+import img14 from '../../../public/img/img14.jpg'
+import img15 from '../../../public/img/img15.jpg'
+import img16 from '../../../public/img/img16.jpg'
+import song1 from  '../../../public/audio/song1.mp3'
+import song2 from  '../../../public/audio/song2.mp3'
+import song3 from  '../../../public/audio/song3.mp3'
 
-export const assets = {
+export const icons = {
     bell_icon,
     home_icon,
     like_icon,
@@ -66,7 +66,33 @@ export const assets = {
     arrow_left,
     arrow_right,
     spotify_logo,
-    clock_icon
+    clock_icon 
+}
+
+export const assets = {
+    sidebar: {
+       top: [{ title: "Home", icons: home_icon}, {title: "Search", icons: search_icon}],
+       bottom: {
+         title: {
+            0: [{title: "Your Library", icons:  stack_icon}],
+            1: [{first: arrow_right, second: plus_icon}]
+         },
+         adv: [
+            {
+                title: "Create your first playlist",
+                par: "it's easy we will help you",
+                btn: "Crate Playlist",
+            },
+            {
+                title: "Let's findsome podcasts to follow",
+                par: "well keep you update on new episodes",
+                btn: "Browse podcasts",
+            }
+         ]
+       }   
+    },
+
+    player: [shuffle_icon, prev_icon, play_icon, next_icon, loop_icon]
 }
 
 export const albumsData = [
