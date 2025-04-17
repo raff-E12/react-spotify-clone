@@ -4,7 +4,7 @@ import { useParams } from 'react-router'
 import { albumsData, assets, icons } from '../js/assets';
 
 export default function DisplayAlbum() {
-    const {id} = useParams();
+    const {id} = useParams(); // con use-param ha preso l'id per la rapprensentazione di ciascun album selezionato 
     const albums_data = albumsData[id];
     // console.log(albums_data);
 
