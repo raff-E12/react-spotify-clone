@@ -77,6 +77,14 @@
       color: var(--spotify-dark);
       font-family: var(--font-montserrat)
     }
+
+    .albums{
+      font-family: var(--font-montserrat);
+    }
+
+    .title-menu{
+      font-family: var(--font-montserrat);
+    }
    
   }
  /***** End CSS Style Page WebApp *****/
@@ -209,7 +217,7 @@
     }
 
     .navbar-sc{
-      @apply w-full flex justify-between items-center font-bold;
+      @apply w-full flex justify-between items-center font-bold flex-wrap;
     }
 
     .nav-icons{
@@ -225,11 +233,35 @@
     }
 
     .btn-nav{
-      @apply text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer;
+      @apply px-4 py-1 rounded-2xl hidden md:block cursor-pointer;
     }
 
     .user-icons{
       @apply bg-purple-500 text-black w-7 h-7 rounded-full flex items-center justify-center font-light capitalize;
+    }
+
+    .btn-nav.second{
+      @apply bg-black py-1 px-3 rounded-2xl cursor-pointer text-white;
+    }
+
+    .items-btn-nav{
+      @apply flex items-center gap-2 mt-5;
+    }
+
+    .btn-nav{
+      @apply bg-white text-black px-4 py-1 rounded-2xl cursor-pointer;
+    }
+
+    .btn-nav.inactive{
+      @apply bg-black text-white;
+    }
+
+    .items-displays{
+      @apply min-w-[180px] p-2 px-3 rounded cursor-pointer hover:bg-[#ffffff26];
+    }
+
+    .overflow-sc{
+      @apply flex overflow-auto;
     }
   }
  
