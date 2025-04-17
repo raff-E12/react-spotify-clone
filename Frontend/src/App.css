@@ -20,7 +20,7 @@
     body{
       background-color: var(--spotify-dark);
       color: var(--spotify-white);
-      font-family: var(--font-poppins);
+      font-family: var(--font-montserrat);
       text-transform: capitalize;
       width: 100%;
     }
@@ -262,6 +262,14 @@
 
     .overflow-sc{
       @apply flex overflow-auto;
+    }
+
+    .playlist-show-songs{
+      @apply mt-10 flex gap-8 flex-col md:flex-row md:items-end;
+    }
+
+    .grid-song-id-pres{
+      @apply grid grid-cols-3 sm:grid-cols-4 mt-10 mb-4 pl-2 text-[#a7a7a7];
     }
   }
  
