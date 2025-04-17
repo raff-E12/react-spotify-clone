@@ -1,5 +1,5 @@
 import React from 'react'
-import { songsData, assets } from '../js/assets'
+import { songsData, assets, icons } from '../js/assets'
 
 export default function Player() {
     const song_list_export = songsData;
@@ -23,13 +23,11 @@ export default function Player() {
         </div>
         <div className='icons-player'>
             <div className='icons-player-group'>
-                {assets_icons.player.map( icons => {
-                    return(
-                        <>
-                         <img src={icons.icon} alt="icons"/>
-                        </>
-                    )
-                })}
+               <img src={icons.shuffle_icon} alt="ico-player" />
+               <img src={icons.prev_icon} alt="ico-player" />
+               <img src={icons.play_icon} alt="ico-player" />
+               <img src={icons.next_icon} alt="ico-player" />
+               <img src={icons.loop_icon} alt="ico-player" />
             </div>
             <div className='slide-player'>
               <p>1:06</p>
@@ -40,23 +38,15 @@ export default function Player() {
            </div>
         </div>
         <div className='icons-setting'>
-           {assets_icons.icons_setting_1.map( icons =>{
-             return(
-             <>
-               <img src={icons.icon}  className='icon-player-left' alt='icons'/>
-             </>
-             )
-           })}
+            <img src={icons.plays_icon} alt="icons" className='icon-player-left'/>
+            <img src={icons.mic_icon} alt="icons" className='icon-player-left'/>
+            <img src={icons.speaker_icon} alt="icons" className='icon-player-left'/>
+            <img src={icons.volume_icon} alt="icons" className='icon-player-left'/>
            <div className='volume-slider'>
               <hr className='slide'/>
            </div>
-           {assets_icons.icons_setting_2.map( icons => {
-             return(
-               <>
-               <img src={icons.icon} alt="img" className='icon-player-left' />
-               </>
-             )
-           })}
+            <img src={icons.mini_player_icon} alt="icons" className='icon-player-left'/>
+            <img src={icons.zoom_icon} alt="icons" className='icon-player-left'/>
         </div>
     </div>
   )
