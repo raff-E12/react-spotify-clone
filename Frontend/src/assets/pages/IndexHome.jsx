@@ -11,6 +11,7 @@ export default function IndexHome() {
             <DisplayHome />
         </div>
         <Player />
+        {/* <audio preload='auto'></audio> */}
     </div>
   )
 }
