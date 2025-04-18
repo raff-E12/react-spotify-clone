@@ -1,40 +1,34 @@
 import React from 'react'
 import { songsData, assets, icons } from '../js/assets'
+import { useContext } from 'react';
+import { PlayerContext } from '../context/PlayerContext';
 
 export default function Player() {
     const song_list_export = songsData;
-    const assets_icons = assets;
+    const { seekBar, seekBg, playStatus, play, pause, isTrack, isTime } = useContext(PlayerContext);
   return (
     <div className='player-sc'>
         <div className='song-icons'>
-        {song_list_export.map( element => {
-            if (element.id === 0) {
-                return(
-                   <>
-                     <img src={element.image} alt="song-icon" />
-                     <div>
-                        <p className='title-song-pl'>{element.name}</p>
-                        <p>{element.desc.slice(0, 12)}</p>
-                     </div>
-                   </>
-                )
-            }
-        })}
+          <img src={isTrack.image} alt="song-icon" />
+            <div>
+              <p className='title-song-pl'>{isTrack.name}</p>
+              <p>{isTrack.desc.slice(0, 12)}</p>
+           </div>
         </div>
         <div className='icons-player'>
             <div className='icons-player-group'>
                <img src={icons.shuffle_icon} alt="ico-player" />
                <img src={icons.prev_icon} alt="ico-player" />
-               <img src={icons.play_icon} alt="ico-player" />
+               {playStatus ? <img onClick={() => {pause()}} src={icons.pause_icon} alt="ico-player" /> : <img onClick={() => {play()}} src={icons.play_icon} alt="ico-player" />}
                <img src={icons.next_icon} alt="ico-player" />
                <img src={icons.loop_icon} alt="ico-player" />
             </div>
             <div className='slide-player'>
-              <p>1:06</p>
-                <div className='slide-sc'>
-                    <hr className='slide'/>
+              <p>{isTime.currectTime.minute}:{isTime.currectTime.second}</p>
+                <div ref={seekBg} className='slide-sc'>
+                    <hr ref={seekBar} className='slide'/>
                 </div>
-              <p>1:90</p>
+              <p>{isTime.totalTime.minute}:{isTime.totalTime.second}</p>
            </div>
         </div>
         <div className='icons-setting'>
