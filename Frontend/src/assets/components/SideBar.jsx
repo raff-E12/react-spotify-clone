@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 export default function SideBar() {
     const assets_icons = assets.sidebar;
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Indirizzamento Nella route Principale.
 
   return (
     <div className='sidebar-sc'>
