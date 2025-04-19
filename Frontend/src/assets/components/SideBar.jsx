@@ -1,12 +1,15 @@
 import React from 'react'
 import { assets, icons } from '../js/assets'
+import { useNavigate } from 'react-router';
 
 export default function SideBar() {
     const assets_icons = assets.sidebar;
+    const navigate = useNavigate();
+
   return (
     <div className='sidebar-sc'>
         <div className='icons-side'>
-            <div className='options-bar'>
+            <div className='options-bar' onClick={() => navigate("/")}>
                <img src={icons.home_icon} alt="icons"/>
                 <p>Home</p>
             </div>
