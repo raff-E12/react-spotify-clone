@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Navbar from '../components/Navbar'
 import { useParams } from 'react-router'
 import { albumsData, assets, icons, songsData } from '../js/assets';
+import { PlayerContext } from '../context/PlayerContext';
 
 export default function DisplayAlbum() {
     const {id} = useParams(); // con use-param ha preso l'id per la rapprensentazione di ciascun album selezionato 
     const albums_data = albumsData[id];
     // console.log(albums_data);
+    const {playWithId} = useContext(PlayerContext);
 
   return (
     <>
@@ -37,7 +39,7 @@ export default function DisplayAlbum() {
         {songsData.map((items,index) => {
           return(
             <>
-          <div key={index} className='grid grid-col-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer'>
+          <div key={index} onClick={() => playWithId(items.id)} className='grid grid-col-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer'>
             <p className='text-white'>
               <b className='mr-4 text-[#a7a7a7]'>{index + 1}</b>
               <img src={items.image} alt="icons" className='inline w-10 mr-5'/>

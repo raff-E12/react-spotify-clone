@@ -5,7 +5,9 @@ import { PlayerContext } from '../context/PlayerContext';
 
 export default function Player() {
     const song_list_export = songsData;
-    const { seekBar, seekBg, playStatus, play, pause, isTrack, isTime } = useContext(PlayerContext);
+    const { seekBar, seekBg, playStatus, play, pause, isTrack, isTime, previous, next, seekSong } = useContext(PlayerContext);
+
+    
   return (
     <div className='player-sc'>
         <div className='song-icons'>
@@ -18,14 +20,14 @@ export default function Player() {
         <div className='icons-player'>
             <div className='icons-player-group'>
                <img src={icons.shuffle_icon} alt="ico-player" />
-               <img src={icons.prev_icon} alt="ico-player" />
+               <img src={icons.prev_icon} alt="ico-player" onClick={() => {previous()}}/>
                {playStatus ? <img onClick={() => {pause()}} src={icons.pause_icon} alt="ico-player" /> : <img onClick={() => {play()}} src={icons.play_icon} alt="ico-player" />}
-               <img src={icons.next_icon} alt="ico-player" />
+               <img src={icons.next_icon} alt="ico-player" onClick={() => {next()}}/>
                <img src={icons.loop_icon} alt="ico-player" />
             </div>
             <div className='slide-player'>
               <p>{isTime.currectTime.minute}:{isTime.currectTime.second}</p>
-                <div ref={seekBg} className='slide-sc'>
+                <div ref={seekBg} onClick={(e) => seekSong(e)} className='slide-sc'>
                     <hr ref={seekBar} className='slide'/>
                 </div>
               <p>{isTime.totalTime.minute}:{isTime.totalTime.second}</p>
