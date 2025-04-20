@@ -7,6 +7,7 @@ import songRouter from "./routes/songRoute.mjs";
 import connectDB from "./config/mongodb.mjs";
 import connectCloudinary from "./config/cloudinary_config.mjs";
 import multer from "multer";
+import albumRoute from "./routes/albumRoute.mjs";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -19,6 +20,7 @@ app.use(express.json());
 // Implementazione del CORS in richieste di un altro dominio.
 app.use(cors());
 app.use("/api/song", songRouter);
+app.use("/api/album", albumRoute);
 
 app.get("/", (req, res) => {
     return res.status(200).json({msg: "Api Working", status: 200});
