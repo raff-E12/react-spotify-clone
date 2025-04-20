@@ -6,6 +6,7 @@ import "dotenv/config"
 import songRouter from "./routes/songRoute.mjs";
 import connectDB from "./config/mongodb.mjs";
 import connectCloudinary from "./config/cloudinary_config.mjs";
+import multer from "multer";
 
 const app = express();
 const port = process.env.PORT || 4000;
