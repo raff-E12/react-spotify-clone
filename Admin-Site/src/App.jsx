@@ -1,12 +1,14 @@
 import './App.css'
+import { BrowserRouter} from "react-router-dom"
+import IndexLayout from './assets/layout/IndexLayout'
 
 function App() {
 
   return (
     <>
-     <div className='body-sc'>
-       <h1>Hello</h1>
-     </div>
+    <BrowserRouter >
+      <IndexLayout  />
+    </BrowserRouter>
     </>
   )
 }
