@@ -28,17 +28,22 @@ const addAlbum= async (req, res) => {
 
 const listAlbum= async (req, res) => {
     try {
-        
+        const all_album = await albumModel.find({});
+        return res.status(200).json({msg: "The List Album", status: 200, list: all_album});
     } catch (error) {
-        
+        console.log(error);
+        return res.status(500).json({msg: "Communication has been interrupted", status: 500});
     }
 }
 
 const removeAlbum= async (req, res) => {
     try {
-        
+        const value_id = req.body.id;
+        await albumModel.findByIdAndDelete(value_id);
+        return res.status(200).json({msg: "Album is Removed", status: 200});
     } catch (error) {
-        
+        console.log(error);
+        return res.status(400).json({msg: "Invalid parameter value", status: 400});
     }
 }
 

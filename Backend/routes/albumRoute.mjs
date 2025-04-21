@@ -7,6 +7,6 @@ const albumRoute = express.Router();
 
 albumRoute.post("/add", upload.single("image"), addAlbum); // Gestione di un singola parametro in multer.
 albumRoute.get("/list", listAlbum)
-albumRoute.post("remove", removeAlbum);
+albumRoute.post("/remove", upload.single("file"),removeAlbum);
 
 export default albumRoute

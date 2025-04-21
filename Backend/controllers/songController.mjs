@@ -27,21 +27,21 @@ const addSong = async (req, res) => {
         const song = SongModel(songData); // Esportazione delle risorse ottenute corrispondenti allo schema ottenuto nel invio di dati.
         await song.save(); // Salvataggio delle risorse nel database.
 
-        return res.status(200).json({msg: "Success Trasfer Database.", status: 200}); // Stato di risposta.
+        return res.status(200).json({msg: "Success Trasfer Song to Database.", status: 200}); // Stato di risposta.
 
     } catch (error) {
         console.log(error);
-        return res.status(404).json({msg: "Not Success Trasfer to Database", status:400});
+        return res.status(400).json({msg: "Not Success Trasfer to Database", status:400});
     }
 }
 
 const listSong = async (req, res) => {
     try {
         const allSongs = await SongModel.find({}); // Esportazione della collezione creata all'interno del database.
-        res.status(200).json({msg: "Success Song Find!!", status:200, result: allSongs});
+        res.status(200).json({msg: "Song List", status:200, result: allSongs});
     } catch (error) {
         console.log(error);
-        res.status(404).json({msg: "The Object is Empty!!", status: 404});
+        res.status(500).json({msg: "Communication has been interrupted", status: 500});
     }
 }
 
@@ -49,10 +49,10 @@ const removeSong = async (req, res) =>{
     try {
        const body_id = req.body.id;
        await SongModel.findByIdAndDelete(body_id);
-       return res.status(200).json({msg: "Song is Removing to the collection !!", status: 200});
+       return res.status(200).json({msg: "Song is Removing to the collection", status: 200});
     } catch (error) {
         console.log(error);
-        return res.status(404).json({msg: "Song is not Removing to the collection !!", status: 404});
+        return res.status(400).json({msg: "Invalid parameter value", status: 400});
     }
 }
 
