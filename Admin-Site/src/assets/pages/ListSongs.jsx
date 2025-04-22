@@ -40,7 +40,7 @@ export default function ListSongs() {
   useEffect(() =>{ fetchSongs(); },[]);
 
   return (
-    <div>
+    <div className='pb-10'>
       <p className='text-2xl font-bold'>All Songs List</p>
       <br />
       <div>

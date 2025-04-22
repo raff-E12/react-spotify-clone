@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { useRef } from 'react';
-import { songsData } from '../js/assets';
+import { albumsData, songsData } from '../js/assets';
+import axios from "axios"
 
 // utilizzo del Pattern Provider nel espotazione dati:
 
@@ -12,9 +13,14 @@ export default function PlayerContextProvider(props) {
     const seekBg = useRef();
     const seekBar = useRef();
 
-    const [isTrack, setTrack] = useState(songsData[1]);
-    const [playStatus, setPlayStaus] = useState(false);
-    const [isTime, setTime] = useState({
+    // URI Principale per la chiamata Api
+    const url = "http://localhost:4000";
+
+    const [songData, SetDataSong] = useState([]); //Lista delle canzoni importata dal Database
+    const [AlbumsData, SetAlbumsData] = useState([]); //Lista degli albums importa dal Database
+    const [isTrack, setTrack] = useState(songsData[1]); //Lista delle Traccia Complete
+    const [playStatus, setPlayStaus] = useState(false); //Alternanza tra pausa e play
+    const [isTime, setTime] = useState({ //Oggetto Di Riferimento sulla durata effettiva della traccia
         currectTime:{
             second: 0,
             minute: 0
@@ -25,10 +31,10 @@ export default function PlayerContextProvider(props) {
         }
     });
 
+    // Locomozione dello Slider presa in riferimento dall'audioRef (audioTag)
     useEffect(()=>{
         setTimeout(() => {
             audioRef.current.ontimeupdate = () =>{
-            // console.log(seekBar.current.style);
             seekBar.current.style.width = `${(Math.floor(audioRef.current.currentTime / audioRef.current.duration * 100))}%`;
                 setTime({
                     currectTime:{
@@ -54,32 +60,80 @@ export default function PlayerContextProvider(props) {
         setPlayStaus(false);
     }
 
+    //Click della canzone all utilizzo del id dell'elemento
     const playWithId = async (id) =>{
-        const song_id = await setTrack(songsData[id]);
-        const audio_ref = await audioRef.current.play();
+        // const song_id = await setTrack(songsData[id]);
+        // const audio_ref = await audioRef.current.play();
+        // setPlayStaus(true);
+        await songData.map((item) => {
+            if (id === item._id) {
+                setTrack(item)
+            }
+        })
+        await audioRef.current.play();
         setPlayStaus(true);
     }
 
+    //Corrispondenza del Id con la lista in Database.
     const previous = async () =>{
-        if (isTrack.id > 0) {
-            const track_id = await setTrack(songsData[isTrack.id + 1])
-            const audio_ref = await audioRef.current.play();
-            setPlayStaus(true);
-        }
+        // if (isTrack.id > 0) {
+        //     const track_id = await setTrack(songsData[isTrack.id + 1])
+        //     const audio_ref = await audioRef.current.play();
+        //     setPlayStaus(true);
+        // }
+        songData.map( async (items, index) =>{ 
+            if (isTrack._id === items._id && index > 0){
+                await setTrack(songData[index - 1]);
+                await audioRef.current.play();
+                setPlayStaus(true);
+            }
+        })
     }
 
     const next = async () =>{
-        if (isTrack.id < songsData.length - 1) {
-            const track_id = await setTrack(songsData[isTrack.id + 1])
-            const audio_ref = await audioRef.current.play();
-            setPlayStaus(true);
-        }
+        // if (isTrack.id < songsData.length - 1) {
+        //     const track_id = await setTrack(songsData[isTrack.id + 1])
+        //     const audio_ref = await audioRef.current.play();
+        //     setPlayStaus(true);
+        // }
+        songData.map( async (items, index) =>{
+            if (isTrack._id === items._id && index < songData.length){
+                await setTrack(songData[index + 1]);
+                await audioRef.current.play();
+                setPlayStaus(true);
+            }
+        })
     }
 
     const seekSong = async (e) =>{
         // console.log(e);
         return audioRef.current.currentTime = ((e.nativeEvent.offsetX / seekBg.current.offsetWidth) * audioRef.current.duration);
     }
+    
+    //Estrazione dei valori trasmessi dal Database tramite Api
+    const getSongData = async () =>{
+        try {
+            const response = await axios.get(`${url}/api/song/list`);
+            // console.log(response.data.result[0])
+            SetDataSong(response.data.result);
+            setTrack(response.data.result[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    //Estrazione dei valori trasmessi dal Database tramite Api
+    const getAlbumData = async () =>{
+        try {
+            const response = await axios.get(`${url}/api/album/list`);
+            SetAlbumsData(response.data.list);
+            setTrack(response.data.list[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => { getSongData(); getAlbumData(); }, [])
     
     const context_Value = { // 2. Creazione di una costante con tutte le possibili materiali da esportare.
         audioRef,
@@ -89,7 +143,7 @@ export default function PlayerContextProvider(props) {
         playStatus,setPlayStaus,
         isTime, setTime,
         play, pause, playWithId, 
-        previous, next, seekSong
+        previous, next, seekSong, songData, AlbumsData
     }
 
     // 3. Definire un attributo di valore con la variabile da esportare con i possibili materiali da aggiungere ai componenti.

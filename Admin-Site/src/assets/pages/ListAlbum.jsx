@@ -42,7 +42,7 @@ export default function ListAlbum() {
   useEffect(() =>{ fetchAlbums() },[])
 
   return (
-    <div>
+    <div className='pb-10'>
       <p className='text-2xl font-bold'>All Albums List</p>
       <br />
       <div>

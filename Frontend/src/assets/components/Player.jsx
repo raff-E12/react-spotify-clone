@@ -6,10 +6,12 @@ import { PlayerContext } from '../context/PlayerContext';
 export default function Player() {
     const song_list_export = songsData;
     const { seekBar, seekBg, playStatus, play, pause, isTrack, isTime, previous, next, seekSong } = useContext(PlayerContext);
-
     
+    //Controllo Dei Valori del Database Durante la fase di rendering
   return (
-    <div className='player-sc'>
+    <>
+    {isTrack ? <>
+      <div className='player-sc'>
         <div className='song-icons'>
           <img src={isTrack.image} alt="song-icon" />
             <div>
@@ -19,6 +21,7 @@ export default function Player() {
         </div>
         <div className='icons-player'>
             <div className='icons-player-group'>
+              {/* Configurazione dello Slider tramite le funzioni della useContext */}
                <img src={icons.shuffle_icon} alt="ico-player" />
                <img src={icons.prev_icon} alt="ico-player" onClick={() => {previous()}}/>
                {playStatus ? <img onClick={() => {pause()}} src={icons.pause_icon} alt="ico-player" /> : <img onClick={() => {play()}} src={icons.play_icon} alt="ico-player" />}
@@ -45,5 +48,7 @@ export default function Player() {
             <img src={icons.zoom_icon} alt="icons" className='icon-player-left'/>
         </div>
     </div>
+    </> : null}
+  </>
   )
 }

@@ -3,6 +3,8 @@ import Display from './Display'
 import { Route, BrowserRouter, Routes, useLocation } from 'react-router'
 import DisplayAlbum from './DisplayAlbum'
 import { albumsData } from '../js/assets';
+import { useContext } from 'react';
+import { PlayerContext } from '../context/PlayerContext';
 
 export default function DisplayHome() {
   // Gestione delle Route in un singolo componente partendo dalla sua implementazione.
@@ -10,9 +12,15 @@ export default function DisplayHome() {
   const location = useLocation(); //permette di accedere alla posizione attuale della location in un browser.
                                   // la location visualizza: il percorso, lo stato, query-string e i frammenti hash.
   // console.log(location);
-  const isAlbum = location.pathname.includes("album");
-  const albumId = isAlbum ? location.pathname.slice(-1) : "";
-  const bg_color = albumsData[Number(albumId)].bgColor;
+
+  const { AlbumsData } = useContext(PlayerContext);
+
+  const isAlbum = location.pathname.includes("album"); //Corrispondenza dell'album in parametro
+  const albumId = isAlbum ? location.pathname.split("/").pop() : ""; //estrazione del id nel parametro
+  const bg_color = isAlbum && albumsData.length > 0 ? AlbumsData.find((color) => (color._id === albumId)).bgColor : "#1DB954"; //Estrazione della proprietà dalla oggetto
+
+  console.log()
+
 
   useEffect(() => {
     if (isAlbum) {
@@ -25,10 +33,12 @@ export default function DisplayHome() {
   return (
     <>
       <div ref={displayRef} className='display-home'>
-        <Routes >
+        {albumsData.length > 0 ? <>
+          <Routes >
            <Route path='/' element={<Display />}/>
-           <Route path='/album/:id' element={<DisplayAlbum />}/>
+           <Route path='/album/:id' element={<DisplayAlbum albums={AlbumsData.find((element) => {return element._id === albumId})}/>}/>
         </Routes>
+        </> : null}
       </div>
     </>
   )
