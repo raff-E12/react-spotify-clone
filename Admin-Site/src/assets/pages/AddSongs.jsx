@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import assets from '../js/assets_admin'
 import axios from "axios"
 import { url } from '../layout/IndexLayout';
 import { toast } from 'react-toastify';
+
+// Creazione del Form per l'aggiunta di nuova musica nel database.
 
 export default function AddSongs() {
   const [isImage, setImage] = useState(false);
@@ -15,28 +17,28 @@ export default function AddSongs() {
 
   const onSubmitHandler = async (e) =>{
       e.preventDefault();
-      setLoading(true);
+      setLoading(true); // Alternanza di stato di isLoading
 
       try {
 
-        const form_Data = new FormData();
+        const form_Data = new FormData(); // L'oggetto formData è uno oggetto che raggruppa delle coppie chiave valore.
         
-        form_Data.append("name", isName);
-        form_Data.append("desc", isDesc);
+        form_Data.append("name", isName);  // Per ogni valore conservato, vengono aggiunti ai parametri corrispondenti del Api al FormData
+        form_Data.append("desc", isDesc);  // Valore attribuito alla FormData verranò passati all' Api.
         form_Data.append("image", isImage);
         form_Data.append("audio", isSong);
         form_Data.append("album", isAlbum);
 
-        const response = await axios.post(`${url}/api/song/add`, form_Data);
+        const response = await axios.post(`${url}/api/song/add`, form_Data); // Chiamata Api tramite database.
 
-        if (response.data.status === 200) {
+        if (response.data.status === 200) {  //Se lo stato corrisponde allora sarà vera.
           toast.success("Song is Added");
           setName("");
           setDesc("");
           setAlbum("none");
           setImage(false);
           setSong(false);
-        } else{
+        } else{   // Se no sarà falso come si prevede.
           toast.error("Song is not Added");
         }
 
@@ -45,14 +47,32 @@ export default function AddSongs() {
         toast.error("Bad Request");
       }
 
-      setLoading(false);
+      setLoading(false); // Alternanza di stato di isLoading
   }
+
+  const loadAlbumData = async () =>{
+    try {
+      const response = await axios.get(`${url}/api/album/list`);
+      
+      if (response.data.status === 200) {
+         setAlbumData(response.data.list);
+      } else{
+        toast.error("Album List is Empty");
+      }
+      
+    } catch (error) {
+      console.log(error);
+      toast.error("Server Error Connections");
+    }
+  }
+
+  useEffect(() =>{ loadAlbumData() },[])
 
   return (
     <>
-    {isLoading ? <div className='grid place-items-center min-h-[80vh]'> 
-       <div className='w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin'></div>
-    </div> : <form onSubmit={onSubmitHandler} className='flex flex-col items-start gap-8 text-gray-600 pb-5'>
+    {isLoading ? <div className='menu-add-song'> 
+       <div className='loading-icon'></div>
+    </div> : <form onSubmit={onSubmitHandler} className='form-sc-song'>
 <div className='flex gap-8'>
   <div className='flex flex-col gap-4'>
     <p>Upload Song</p>
@@ -73,18 +93,19 @@ export default function AddSongs() {
 
 <div className='flex flex-col gap-2.5'>
     <p>Song Name</p>
-    <input onChange={(e) => setName(e.target.value)} value={isName} type='text'className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]' placeholder='Song Name...' required/>
+    <input onChange={(e) => setName(e.target.value)} value={isName} type='text'className="input-text" placeholder='Song Name...' required/>
   </div>
 
   <div className='flex flex-col gap-2.5'>
     <p>Song Description</p>
-    <input type='text' onChange={(e) => setDesc(e.target.value)} value={isDesc} className='bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)]' placeholder='Song Description...' required/>
+    <input type='text' onChange={(e) => setDesc(e.target.value)} value={isDesc} className='input-text' placeholder='Song Description...' required/>
   </div>
 
   <div className='flex flex-col gap-2.5'>
     <p>Album</p>
     <select className='bg-transparent outline-green-600 borde-2 border-gray-400 p-2.5 w-[150px]' onChange={(e) => setAlbum(e.target.value)} defaultValue={isAlbum}>
       <option value="none">None</option>
+      {AlbumData.map((items, index) => { return(<option key={index} value={items.name}>{items.name}</option>)})}
     </select>
   </div>
 

@@ -8,6 +8,7 @@ import ListAlbum from "../pages/ListAlbum"
 import SideBar from '../components/SideBar'
 import Navbar from '../components/Navbar';
 
+// URI principale dell'Api da comunicare con il server e il cloud.
 export const url = "http://localhost:4000";
 
 export default function IndexLayout() {

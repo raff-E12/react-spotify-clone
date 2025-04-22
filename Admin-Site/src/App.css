@@ -61,6 +61,36 @@
     .navbar-sc{
       @apply w-full border-b-2 border-gray-800 px-5 sm:px-12 py-4 text-lg;
     }
+
+    .input-text{
+      @apply bg-transparent outline-green-600 border-2 border-gray-400 p-2.5 w-[max(40vw,250px)];
+    }
+  }
+
+  @layer components{
+    .menu-add-song{
+      @apply grid place-items-center min-h-[80vh];
+    }
+
+    .loading-icon{
+      @apply w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin;
+    }
+
+    .form-sc-song{
+      @apply flex flex-col items-start gap-8 text-gray-600 pb-5;
+    }
+
+    .tables-values{
+      @apply sm:grid hidden grid-cols-[0.5fr_1fr_2fr_1fr_0.5fr] items-center gap-2.5 p-3 border border-gray-300 text-sm mr-5 bg-gray-100;
+    }
+
+    .box-song-index{
+      @apply grid grid-cols-[1fr_1fr_1fr] sm:grid-cols-[0.5fr_1fr_2fr_1fr_0.5fr] items-center gap-2.5 p-3 border border-gray-300 text-sm mr-5;
+    }
+
+    .btn-remove{
+      @apply cursor-pointer border border-green-500 w-[30px] h-[30px] flex items-center justify-center font-bold bg-green-600 text-white;
+    }
   }
 
 /***** End Admin-Page Style Css *****/
