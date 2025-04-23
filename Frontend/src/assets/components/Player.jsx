@@ -29,7 +29,7 @@ export default function Player() {
                <img src={icons.loop_icon} alt="ico-player" />
             </div>
             <div className='slide-player'>
-              <p>{isTime.currectTime.minute}:{isTime.currectTime.second}</p>
+              <p>{String(isTime.currectTime.minute).padStart(2, "0")}:{String(isTime.currectTime.second).padStart(2, "0")}</p>
                 <div ref={seekBg} onClick={(e) => seekSong(e)} className='slide-sc'>
                     <hr ref={seekBar} className='slide'/>
                 </div>
